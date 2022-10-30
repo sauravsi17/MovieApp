@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <nav>
+          <ul class="nav-links">
+            <li class="home">
+              <a href="#" class="navText">HOME</a>
+            </li>
+            <li class="quiz">
+              <a href="#" class="navText">QUIZ</a>
+            </li>
+            <li>
+              <button class="navbutton"></button>
+            </li>
+          </ul>
+        </nav>
+        <div class="search">
+          <input
+            type="text"
+            id="search"
+            name="search"
+            placeholder="🔭  Search for movies, shows or actors"
+            size="50"
+          />
+        </div>
+      </header>
+      <div class="titles hidden">
+        <p class="playing">Now Playing</p>
+        <p class="popular">Popular</p>
+      </div>
+      <div id="body" class="mainBody">
+        <section class="quizques hidden">
+          <div class="instructions">
+            <p>
+              Guess the movie ?? After every 15 secs the picture will deblur a
+              notch, but there will be a penalty. The faster you guess the movie
+              the more point you get.<br />
+              All The BEST !!
+            </p>
+          </div>
+          <div class="quizMainbody">
+            <div class="picAnswer">
+              <img src="#" class="quizImage" />
+              <input
+                type="text"
+                class="answer"
+                id="answer"
+                name="answer"
+                placeholder="Enter you answer here"
+                size="200"
+              />
+            </div>
+            <div class="restofquiz">
+              <button class="quizButton">Start !</button>
+              <div class="timer">60</div>
+              <h2>SCORE</h2>
+              <div class="score"></div>
+              <p></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="load-images">
+          <div class="movieInfo hidden"></div>
+          <button class="slider__btn slider__btn--left hidden">&larr;</button>
+          <button class="slider__btn slider__btn--right hidden">&rarr;</button>
+        </section>
+        <section class="movie-details">
+          <div class="movieInfo hidden"></div>
+          <button class="slider__btn slider__btn--left hidden">&larr;</button>
+          <button class="slider__btn slider__btn--right hidden">&rarr;</button>
+        </section>
+      </div>
+    </main>
+    <footer>Copyright ©Saurav Singh</footer>
+  </body>
+</html>

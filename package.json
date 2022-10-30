@@ -1,0 +1,16 @@
+{
+  "name": "movieapp",
+  "version": "1.0.0",
+  "description": "A Simple and fun movieApp",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Saurav Singh",
+  "license": "ISC",
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "parcel": "^2.7.0"
+  },
+  "devDependencies": {}
+}
