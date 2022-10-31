@@ -616,22 +616,10 @@ let answerInput;
 let closeQuiz;
 const startQuiz = function () {
   console.log("Button Pressed");
-  console.log(timer.textContent);
+  //console.log(timer.textContent);
   closeQuiz = setInterval(function () {
-    answer.addEventListener("keypress", function (event) {
-      if (event.key === "Enter") {
-        console.log(answer.value);
-        console.log(movies[`movie-${questNo}`].answer);
-        if (answer.value == movies[`movie-${questNo}`].answer) {
-          calculateScore();
-          closeGame();
-          return;
-        }
-      }
-    });
-
     time = +timer.textContent;
-    console.log(time);
+    //console.log(time);
     time = time - 1;
     timer.textContent = `${time}`;
     startTime += 1;
@@ -650,6 +638,20 @@ const startQuiz = function () {
       return;
     }
   }, 1000);
+
+  answer.addEventListener("keyup", function (event) {
+    console.log(event.key);
+    console.log(event.repeat);
+    if (event.key === "Enter") {
+      //console.log(answer.value);
+      //console.log(movies[`movie-${questNo}`].answer);
+      if (answer.value == movies[`movie-${questNo}`].answer) {
+        calculateScore();
+        closeGame();
+        return;
+      }
+    }
+  });
 };
 
 button.addEventListener("click", function () {
