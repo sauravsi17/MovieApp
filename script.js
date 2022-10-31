@@ -48,7 +48,8 @@ navContainer.addEventListener("click", function (e) {
   if (tabClicked === "HOME") {
     togglem = 1;
     togglei = 1;
-
+    currImage1 = 0;
+    currImage2 = 0;
     quizContainer.classList.add("hidden");
     titlesContainer.classList.remove("hidden");
     moviedetailsContainer.classList.remove("hidden");
