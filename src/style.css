@@ -232,7 +232,7 @@ footer {
   height: 4vw;
   width: 4vw;
   cursor: pointer;
-  background-image: url("/control.jpg");
+  background-image: url("./img/control.jpg");
   background-size: cover;
   background-position: center;
   background-position-x: right;

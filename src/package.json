@@ -14,13 +14,9 @@
   "devDependencies": {
     "parcel": "^2.7.0"
   },
-  "main": "moviedatabase.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sauravsi17/MovieApp.git"
-  },
   "bugs": {
     "url": "https://github.com/sauravsi17/MovieApp/issues"
   },
-  "homepage": "https://github.com/sauravsi17/MovieApp#readme"
+  "homepage": "https://github.com/sauravsi17/MovieApp#readme",
+  "default": "script.js"
 }

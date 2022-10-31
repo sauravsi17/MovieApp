@@ -660,11 +660,9 @@ upcoming : https://api.themoviedb.org/3/movie/now_playing?api_key=d25b922370ee92
     button.textContent = "Playing !!";
     console.log(pic.querySelector("img"));
     currFilter.style.setProperty("--blurValue", `${20}px`);
-    //pic.querySelector("img").src = "\\" + movies[`movie-${questNo}`].imgpath;
-    pic.querySelector("img").src = new URL(
-      movies[`movie-${questNo}`].imgpath,
-      import.meta.url
-    );
+    pic.querySelector("img").src =
+      "./img/" + movies[`movie-${questNo}`].imgpath;
+    //pic.querySelector("img").src = new URL(movies[`movie-${questNo}`].imgpath);
     pic.querySelector("img").addEventListener("load", function () {
       startQuiz();
     });
