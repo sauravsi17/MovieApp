@@ -618,24 +618,6 @@ let closeQuiz;
 let newScore = 0;
 const startQuiz = function () {
   closeQuiz = setInterval(function () {
-    answer.addEventListener("keyup", function (event) {
-      console.log(event.key);
-      if (event.key === "Enter") {
-        //  console.log(answer.value);
-        //  console.log(movies[`movie-${questNo}`].answer);
-        if (answer.value === movies[`movie-${questNo}`].answer) {
-          console.log(answer.value);
-          console.log(answeredQues.length);
-          if ((answeredQues.length - 1) % 5 === 0) {
-            closeGame();
-          }
-          calculateScore();
-          newQues();
-          return;
-        }
-      }
-    });
-
     time = +timer.textContent;
     //console.log(time);
     time = time - 1;
@@ -693,8 +675,9 @@ const newQues = function () {
 };
 const closeGame = function () {
   console.log("It Should return");
-  button.textContent = "Start ";
+  button.textContent = "Start Again?? ";
   timer.textContent = `${60}`;
+  score.textContent = newScore;
   newScore = 0;
   currFilter.style.setProperty("--blurValue", `${0}px`);
   //questNo += 1;
@@ -704,11 +687,30 @@ const closeGame = function () {
 const renderQuizimg = function () {
   while (answeredQues.includes(randomNum)) {
     randomNum = Math.trunc(Math.random() * 10 + 1);
-    console.log(randomNum);
+    //console.log(randomNum);
   }
   answeredQues.push(randomNum);
   questNo = randomNum;
   currFilter.style.setProperty("--blurValue", `${20}px`);
-  console.log(`movie-${questNo}`);
+  //console.log(`movie-${questNo}`);
   currFilter.src = movies[`movie-${questNo}`].imgpath;
 };
+
+answer.addEventListener("keyup", function (event) {
+  if (event.key === "Enter") {
+    //console.log(event.key);
+    //  console.log(answer.value);
+    //  console.log(movies[`movie-${questNo}`].answer);
+    if (answer.value === movies[`movie-${questNo}`].answer) {
+      calculateScore();
+      //console.log(answer.value);
+      console.log(answeredQues.length);
+      if ((answeredQues.length - 1) % 5 === 0) {
+        closeGame();
+        return;
+      }
+
+      newQues();
+    }
+  }
+});
