@@ -624,11 +624,11 @@ const startQuiz = function () {
     timer.textContent = `${time}`;
     startTime += 1;
 
-    if (startTime % 10 === 0) {
+    if (startTime % 2 === 0) {
       newBlur = parseInt(
         getComputedStyle(currFilter).getPropertyValue("--blurValue")
       );
-      newBlur -= 3;
+      newBlur -= 1;
       currFilter.style.setProperty("--blurValue", `${newBlur}px`);
     }
 
@@ -701,8 +701,10 @@ answer.addEventListener("keyup", function (event) {
     //console.log(event.key);
     //  console.log(answer.value);
     //  console.log(movies[`movie-${questNo}`].answer);
+
     if (answer.value === movies[`movie-${questNo}`].answer) {
       calculateScore();
+      this.value = "";
       //console.log(answer.value);
       console.log(answeredQues.length);
       if ((answeredQues.length - 1) % 5 === 0) {
