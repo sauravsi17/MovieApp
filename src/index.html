@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+
     <script defer src="script.js"></script>
   </head>
   <body>
@@ -18,9 +19,6 @@
             </li>
             <li class="quiz">
               <a href="#" class="navText">QUIZ </a>
-            </li>
-            <li>
-              <button class="navbutton"></button>
             </li>
           </ul>
         </nav>
@@ -35,30 +33,38 @@
         </div>
       </header>
       <div class="titles hidden">
-        <p class="playing">Now Playing</p>
-        <p class="popular">Popular</p>
+        <p class="playing">NOW PLAYING</p>
+        <p class="popular">POPULAR</p>
       </div>
       <div id="body" class="mainBody">
         <section class="quizques hidden">
           <div class="instructions">
             <p>
-              Guess the movie ?? After every 15 secs the picture will deblur a
-              notch, but there will be a penalty. The faster you guess the movie
-              the more point you get.<br />
-              All The BEST !!
+              Guess the movie - Set of five questions.Each time you will be
+              shown a blurry picture of a famous Bollywood movie scene.The
+              picture will become clearer as the clock ticks. The faster you
+              guess the name of the movie the more point you get.Try to be fast
+              and maximize your score (Acronyms will also do 😊). All The BEST
+              !!
             </p>
           </div>
           <div class="quizMainbody">
             <div class="picAnswer">
-              <img src="#" class="quizImage" />
+              <img src="opening.jpg" class="quizImage" />
+              <p class="hidden">
+                That's It . We dont have any more new questions ! We are in
+                process to add more. Stay tuned. if you want to repeat. Click on
+                "REFRESH THE PAGE" !!
+              </p>
               <input
                 type="text"
+                autocomplete="off"
                 class="answer"
                 id="answer"
                 name="answer"
                 placeholder="Enter you answer here"
                 size="200"
-              />
+              /><span> </span>
             </div>
             <div class="restofquiz">
               <button class="quizButton"><span>Start!</span></button>

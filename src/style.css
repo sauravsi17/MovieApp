@@ -189,12 +189,12 @@ footer {
 .titles {
   margin: none;
   margin-top: 2.5vh;
+  margin-bottom: 1vh;
   padding: none;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: rgb(51, 51, 51);
   font-size: 34px;
   font-weight: 500;
   line-height: 1.17;
@@ -203,6 +203,7 @@ footer {
 .playing {
   padding-top: 1vh;
   margin-top: 2.5vh;
+
   position: absolute;
   top: 50%;
   right: 39%;
@@ -212,6 +213,7 @@ footer {
 .popular {
   padding-top: 1vh;
   margin-top: 2.5vh;
+  padding-bottom: 2vh;
   top: 50%;
   left: 61%;
   position: absolute;
@@ -232,7 +234,7 @@ footer {
   height: 4vw;
   width: 4vw;
   cursor: pointer;
-  background-image: url("/control.jpg");
+  background-image: url("./img/control.jpg");
   background-size: cover;
   background-position: center;
   background-position-x: right;
@@ -240,12 +242,13 @@ footer {
 .modal {
   height: inherit;
   width: inherit;
-  color: #444;
+  color: whitesmoke;
   font-family: "Poppins", sans-serif;
   line-height: 1.3;
   letter-spacing: 1.1;
   font-weight: 500;
-  background-color: white;
+  background-color: rgb(51, 53, 69);
+  transition: transform 2s;
 }
 
 .quizques {
@@ -262,14 +265,19 @@ footer {
 
 .instructions {
   width: inherit;
-  height: 5vh;
+  margin: auto;
+  margin-right: 40%;
+  height: 2vh;
+  width: 45vw;
 }
 .instructions p {
   color: gray;
-
   padding: 1px;
   margin: 1px;
   font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1.3;
+  line-height: 1.5;
 }
 .quizMainbody {
   width: inherit;
@@ -289,7 +297,7 @@ footer {
 }
 .quizImage {
   width: inherit;
-  height: 70vh;
+  height: 75vh;
 }
 .picAnswer img {
   object-fit: contain;
@@ -299,8 +307,9 @@ footer {
 .answer {
   margin: auto;
   width: 10vw;
-  height: 4vh;
-  margin-bottom: 1vh;
+  height: 6vh;
+  margin-bottom: 2vh;
+  font-weight: 600;
   background-color: #ddd;
 }
 
@@ -314,13 +323,16 @@ footer {
 }
 
 .quizButton {
-  height: 5vh;
-  width: 10vw;
+  height: 8vh;
+  width: 8vw;
   border-radius: 5rem;
   font-size: 1.5rem;
-  border: solid darkgrey;
+
   cursor: pointer;
   position: relative;
+  background-color: #087f5b;
+  border: none;
+  box-shadow: 1px 1px #20c997;
 }
 
 .quizButton span {
@@ -328,18 +340,21 @@ footer {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: whitesmoke;
 }
 .timer {
   padding: none;
   margin: none;
-  height: 10vh;
-  width: 15vw;
-  border: solid darkgray;
+  height: 10rem;
+  width: 10rem;
+  border: none;
   text-align: center;
   align-items: center;
   font-size: 5rem;
-  background-color: #ddd;
+  background-color: #12b886;
   position: relative;
+  border-radius: 50%;
+  color: whitesmoke;
 }
 
 .timer span {
@@ -361,4 +376,14 @@ footer {
 
 .hidden {
   display: none;
+}
+
+.picAnswer p {
+  color: gray;
+  padding: 1px;
+  margin: 1px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1.3;
+  line-height: 1.5;
 }

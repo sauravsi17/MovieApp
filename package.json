@@ -9,8 +9,18 @@
   "author": "Saurav Singh",
   "license": "ISC",
   "dependencies": {
-    "lodash-es": "^4.17.21",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
     "parcel": "^2.7.0"
   },
-  "devDependencies": {}
+  "main": "moviedatabase.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sauravsi17/MovieApp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sauravsi17/MovieApp/issues"
+  },
+  "homepage": "https://github.com/sauravsi17/MovieApp#readme"
 }
