@@ -26,6 +26,7 @@ const mainBodycontainer = document.querySelector(".mainBody");
 const titlesContainer = document.querySelector(".titles");
 
 const quizContainer = document.querySelector(".quizques");
+const homepage = document.querySelector(".homepage");
 
 let togglei, togglem;
 
@@ -40,31 +41,30 @@ const errorMsg = function () {
 //Home Navigation
 navContainer.addEventListener("click", function (e) {
   const tabClicked = e.target.textContent;
-  //console.log(tabClicked);
-  if (!tabClicked) {
-    return;
-  }
-
   if (tabClicked === "HOME") {
     togglem = 1;
     togglei = 1;
     currImage1 = 0;
     currImage2 = 0;
     quizContainer.classList.add("hidden");
-    titlesContainer.classList.remove("hidden");
-    moviedetailsContainer.classList.remove("hidden");
-    imageContainer.classList.remove("hidden");
+    homepage.classList.remove("hidden");
+    //titlesContainer.classList.remove("hidden");
+    //moviedetailsContainer.classList.remove("hidden");
+    //imageContainer.classList.remove("hidden");
     startTrending();
     startPopular();
-  } else {
+  } else if (tabClicked === "QUIZ") {
     quizContainer.classList.remove("hidden");
-    titlesContainer.classList.add("hidden");
-    moviedetailsContainer.classList.add("hidden");
-    imageContainer.classList.add("hidden");
+    homepage.classList.add("hidden");
+    //titlesContainer.classList.add("hidden");
+    //moviedetailsContainer.classList.add("hidden");
+    //imageContainer.classList.add("hidden");
     currFilter.classList.remove("hidden");
     pic.querySelector("p").classList.add("hidden");
     initialiseQuiz();
     initquizVariables();
+  } else {
+    return;
   }
   removeImages();
   removeButtons();
