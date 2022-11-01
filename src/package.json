@@ -2,7 +2,7 @@
   "name": "src",
   "version": "1.0.0",
   "description": "MovieApp",
-  "main": "script.js",
+  "default": "script.js",
   "directories": {
     "lib": "img"
   },
