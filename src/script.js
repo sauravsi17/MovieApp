@@ -587,19 +587,39 @@ const bollywoodReco = async function () {
 //bollywoodReco().then((data) => console.log(data));
 
 const movies = {
-  "movie-1": { imgpath: `scene-1.jpg`, answer: "sholay" },
-  "movie-2": { imgpath: `scene-2.jpg`, answer: "deewar" },
+  "movie-1": { imgpath: `scene-1.jpg`, answer: ["sholay"] },
+  "movie-2": { imgpath: `scene-2.jpg`, answer: ["deewar"] },
   "movie-3": {
     imgpath: `scene-3.jpg`,
-    answer: "ddlj",
+    answer: [
+      "ddlj",
+      "dilwale dulhania le jayenge",
+      "dilwale dulhania le jaenge",
+    ],
   },
-  "movie-4": { imgpath: `scene-4.jpg`, answer: "dil chahta hai" },
-  "movie-5": { imgpath: `scene-5.jpg`, answer: "chak de india" },
-  "movie-6": { imgpath: `scene-6.jpg`, answer: "a wednesday" },
-  "movie-7": { imgpath: `scene-7.jpg`, answer: "gangs of wasseypur" },
-  "movie-8": { imgpath: `scene-8.jpg`, answer: "damini" },
-  "movie-9": { imgpath: `scene-9.jpg`, answer: "dil se" },
-  "movie-10": { imgpath: `scene-10.jpg`, answer: "karan arjun" },
+  "movie-4": { imgpath: `scene-4.jpg`, answer: ["dil chahta hai"] },
+  "movie-5": { imgpath: `scene-5.jpg`, answer: ["chak de india"] },
+  "movie-6": { imgpath: `scene-6.jpg`, answer: ["a wednesday"] },
+  "movie-7": {
+    imgpath: `scene-7.jpg`,
+    answer: ["gangs of wasseypur", "gangs of waseypur"],
+  },
+  "movie-8": { imgpath: `scene-8.jpg`, answer: ["damini"] },
+  "movie-9": { imgpath: `scene-9.jpg`, answer: ["dil se"] },
+  "movie-10": { imgpath: `scene-10.jpg`, answer: ["karan arjun"] },
+  "movie-11": { imgpath: `scene-11.jpg`, answer: ["lagaan"] },
+  "movie-12": {
+    imgpath: `scene-12.jpg`,
+    answer: ["pyar ka punchnama", "pyaar ka punchnama"],
+  },
+  "movie-13": { imgpath: `scene-13.jpg`, answer: ["3 idiots"] },
+  "movie-14": { imgpath: `scene-14.jpg`, answer: ["namaste london"] },
+  "movie-15": { imgpath: `scene-15.jpg`, answer: ["agneepath"] },
+  "movie-16": { imgpath: `scene-16.jpg`, answer: ["taare zameen par"] },
+  "movie-17": { imgpath: `scene-17.jpg`, answer: ["border"] },
+  "movie-18": { imgpath: `scene-18.jpg`, answer: ["devdas"] },
+  "movie-19": { imgpath: `scene-19.jpg`, answer: ["masaan"] },
+  "movie-20": { imgpath: `scene-20.jpg`, answer: ["swades"] },
 };
 
 //////QUIZ SECTION//////
@@ -612,6 +632,7 @@ const answer = pic.querySelector(".answer");
 const scoreTitle = document.querySelector(".restofquiz").querySelector("h2");
 const intro = document.querySelector(".instructions");
 const score = document.querySelector(".score");
+const buttspan = button.querySelector("span");
 let time;
 let questNo;
 let startTime = 0;
@@ -642,22 +663,23 @@ const startQuiz = function () {
     }
     if (time < 1) {
       calculateScore();
-      closeGame();
+      timer.style.backgroundColor = "#12b886";
+      newQues();
       return;
     }
   }, 1000);
 };
 
 button.addEventListener("click", function () {
-  if (answeredQues.length - 1 === 10) {
+  if (answeredQues.length - 1 === 20) {
     pic.querySelector("p").classList.remove("hidden");
     currFilter.classList.add("hidden");
     intro.classList.add("hidden");
-    button.textContent = "START";
+    buttspan.textContent = "START";
     initialiseQuiz();
     return;
   }
-  button.textContent = "Playing !!";
+  buttspan.textContent = "Playing !!";
   initialiseQuiz();
   renderQuizimg();
   startQuiz();
@@ -683,8 +705,8 @@ const newQues = function () {
   score.textContent = newScore;
   timer.querySelector("span").textContent = `${60}`;
   currFilter.style.setProperty("--blurValue", `${0}px`);
-  button.textContent = "Next Question?";
-
+  buttspan.textContent = "Next Question";
+  console.log(buttspan.textContent);
   clearInterval(closeQuiz);
   //renderQuizimg();
   //startQuiz();
@@ -694,7 +716,7 @@ const closeGame = function () {
   timer.querySelector("span").textContent = `${60}`;
   currFilter.style.setProperty("--blurValue", `${0}px`);
 
-  button.textContent = "Start Again?? ";
+  buttspan.textContent = "START";
   newScore = 0;
   scoreTitle.textContent = "GAME OVER ⏱️! Your Final Score ✨🎉";
 
@@ -704,7 +726,7 @@ const closeGame = function () {
 
 const renderQuizimg = function () {
   while (answeredQues.includes(randomNum)) {
-    randomNum = Math.trunc(Math.random() * 10 + 1);
+    randomNum = Math.trunc(Math.random() * 20 + 1);
     //console.log(randomNum);
   }
   answeredQues.push(randomNum);
@@ -719,8 +741,14 @@ answer.addEventListener("keyup", function (event) {
     //console.log(event.key);
     console.log(answer.value.toLowerCase());
     //  console.log(movies[`movie-${questNo}`].answer);
-
-    if (answer.value.toLowerCase() === movies[`movie-${questNo}`].answer) {
+    //answeredQues.includes(randomNum);
+    console.log(
+      movies[`movie-${questNo}`].answer.includes(answer.value.toLowerCase())
+    );
+    //if (answer.value.toLowerCase() === movies[`movie-${questNo}`].answer)
+    if (
+      movies[`movie-${questNo}`].answer.includes(answer.value.toLowerCase())
+    ) {
       calculateScore();
 
       answer.style.backgroundColor = "#087f5b";
@@ -736,7 +764,6 @@ answer.addEventListener("keyup", function (event) {
       }
 
       newQues();
-      ("");
     } else {
       answer.style.backgroundColor = "#ffe3e3";
       answer.style.color = "inherit";
@@ -762,7 +789,6 @@ const initialiseQuiz = function () {
 
 const initquizVariables = function () {
   startTime = 0;
-  //answeredQues = [0];
   randomNum = 0;
   newScore = 0;
 };
