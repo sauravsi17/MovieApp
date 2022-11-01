@@ -717,10 +717,10 @@ const renderQuizimg = function () {
 answer.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
     //console.log(event.key);
-    //  console.log(answer.value);
+    console.log(answer.value.toLowerCase());
     //  console.log(movies[`movie-${questNo}`].answer);
 
-    if (answer.value === movies[`movie-${questNo}`].answer) {
+    if (answer.value.toLowerCase() === movies[`movie-${questNo}`].answer) {
       calculateScore();
 
       answer.style.backgroundColor = "#087f5b";
@@ -736,6 +736,7 @@ answer.addEventListener("keyup", function (event) {
       }
 
       newQues();
+      ("");
     } else {
       answer.style.backgroundColor = "#ffe3e3";
       answer.style.color = "inherit";
