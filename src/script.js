@@ -40,7 +40,7 @@ const errorMsg = function () {
 //Home Navigation
 navContainer.addEventListener("click", function (e) {
   const tabClicked = e.target.textContent;
-  console.log(tabClicked);
+  //console.log(tabClicked);
   if (!tabClicked) {
     return;
   }
@@ -61,6 +61,10 @@ navContainer.addEventListener("click", function (e) {
     titlesContainer.classList.add("hidden");
     moviedetailsContainer.classList.add("hidden");
     imageContainer.classList.add("hidden");
+    currFilter.classList.remove("hidden");
+    pic.querySelector("p").classList.add("hidden");
+    initialiseQuiz();
+    initquizVariables();
   }
   removeImages();
   removeButtons();
@@ -84,11 +88,11 @@ navContainer.addEventListener("mouseout", function (e) {
 });
 
 const sliderBtn = function (loadImages) {
-  console.log(currImage);
+  //console.log(currImage);
   //console.log(sliderBtn1);
   //console.log("Click Slider");
 
-  console.log(currImage);
+  //console.log(currImage);
   loadImages.forEach((images, index) => {
     //console.log(index);
     images.style.transform = `translateX(${100 * (index - currImage)}%)`;
@@ -151,7 +155,7 @@ const getCurrentlocation = async function () {
 //Promise to get current country/Region
 let cntryData;
 const getLangCountry = function (lat, lng) {
-  console.log(lat, lng);
+  //console.log(lat, lng);
   return new Promise(function (resolve, reject) {
     cntryData = fetch(
       `https://geocode.xyz/${lat},${lng}?geoit=json&auth=339715904426005374316x102085`
@@ -275,7 +279,7 @@ const getMovdetailsbyId = function (id) {
 ///////////////////Render movie details - Used to render movies searched by users ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const rendermoviedata = function (movieObj) {
-  console.log(movieObj);
+  //console.log(movieObj);
 
   titlesContainer.classList.add("hidden");
 
@@ -356,7 +360,7 @@ let trendingImages = [];
 let popularImages = [];
 const renderPosters = function (movieObj, index, category) {
   //console.log(movieObj);
-  console.log(category);
+  //console.log(category);
   const originalTitle = movieObj.title;
 
   const homepage = movieObj.homepage;
@@ -411,14 +415,14 @@ const getTrivia = function () {
   });
 };
 
-getTrivia().then((res) => console.log(res));
+//getTrivia().then((res) => console.log(res));
 
 let currImage1 = 0;
 imageContainer
   .querySelector(".slider__btn--right")
   .addEventListener("click", function () {
     currImage1++;
-    console.log(currImage1);
+    //console.log(currImage1);
     const allImages = imageContainer.querySelectorAll("img");
     if (currImage1 >= allImages.length) {
       currImage1 = allImages.length - 1;
@@ -435,7 +439,7 @@ moviedetailsContainer
   .querySelector(".slider__btn--right")
   .addEventListener("click", function () {
     currImage2++;
-    console.log(currImage2);
+    //console.log(currImage2);
     const allImages = moviedetailsContainer.querySelectorAll("img");
     if (currImage2 >= allImages.length) {
       currImage2 = allImages.length - 1;
@@ -452,7 +456,7 @@ imageContainer
   .querySelector(".slider__btn--left")
   .addEventListener("click", function () {
     currImage1--;
-    console.log(currImage1);
+    //console.log(currImage1);
 
     const allImages = imageContainer.querySelectorAll("img");
     if (currImage1 < 0) {
@@ -580,7 +584,7 @@ const bollywoodReco = async function () {
   return data;
 };
 
-bollywoodReco().then((data) => console.log(data));
+//bollywoodReco().then((data) => console.log(data));
 
 const movies = {
   "movie-1": { imgpath: `scene-1.jpg`, answer: "sholay" },
@@ -605,10 +609,11 @@ const timer = document.querySelector(".timer");
 const pic = document.querySelector(".picAnswer");
 const currFilter = pic.querySelector("img");
 const answer = pic.querySelector(".answer");
-
+const scoreTitle = document.querySelector(".restofquiz").querySelector("h2");
+const intro = document.querySelector(".instructions");
 const score = document.querySelector(".score");
 let time;
-let questNo = 1;
+let questNo;
 let startTime = 0;
 let newBlur;
 let answeredQues = [0];
@@ -621,7 +626,7 @@ const startQuiz = function () {
     time = +timer.textContent;
     //console.log(time);
     time = time - 1;
-    timer.textContent = `${time}`;
+    timer.querySelector("span").textContent = `${time}`;
     startTime += 1;
 
     if (startTime % 2 === 0) {
@@ -632,6 +637,9 @@ const startQuiz = function () {
       currFilter.style.setProperty("--blurValue", `${newBlur}px`);
     }
 
+    if (time < 15) {
+      timer.style.backgroundColor = "#e03131";
+    }
     if (time < 1) {
       calculateScore();
       closeGame();
@@ -641,7 +649,16 @@ const startQuiz = function () {
 };
 
 button.addEventListener("click", function () {
+  if (answeredQues.length - 1 === 10) {
+    pic.querySelector("p").classList.remove("hidden");
+    currFilter.classList.add("hidden");
+    intro.classList.add("hidden");
+    button.textContent = "START";
+    initialiseQuiz();
+    return;
+  }
   button.textContent = "Playing !!";
+  initialiseQuiz();
   renderQuizimg();
   startQuiz();
 });
@@ -658,28 +675,29 @@ const calculateScore = function () {
   } else {
     newScore += 0;
   }
-  console.log(newScore);
+  //console.log(newScore);
   return;
 };
 
 const newQues = function () {
   score.textContent = newScore;
-  timer.textContent = `${60}`;
-
+  timer.querySelector("span").textContent = `${60}`;
   currFilter.style.setProperty("--blurValue", `${0}px`);
+  button.textContent = "Next Question?";
 
   clearInterval(closeQuiz);
-  button.textContent = "Next Question??";
   //renderQuizimg();
   //startQuiz();
 };
 const closeGame = function () {
-  console.log("It Should return");
-  button.textContent = "Start Again?? ";
-  timer.textContent = `${60}`;
   score.textContent = newScore;
-  newScore = 0;
+  timer.querySelector("span").textContent = `${60}`;
   currFilter.style.setProperty("--blurValue", `${0}px`);
+
+  button.textContent = "Start Again?? ";
+  newScore = 0;
+  scoreTitle.textContent = "GAME OVER ⏱️! Your Final Score ✨🎉";
+
   //questNo += 1;
   clearInterval(closeQuiz);
 };
@@ -704,15 +722,46 @@ answer.addEventListener("keyup", function (event) {
 
     if (answer.value === movies[`movie-${questNo}`].answer) {
       calculateScore();
-      this.value = "";
+
+      answer.style.backgroundColor = "#087f5b";
+      answer.style.color = "white";
+      answer.style.textAlign = "center";
+      pic.querySelector("span").textContent = " ✅  Right Answer !!";
+
       //console.log(answer.value);
-      console.log(answeredQues.length);
+
       if ((answeredQues.length - 1) % 5 === 0) {
         closeGame();
         return;
       }
 
       newQues();
+    } else {
+      answer.style.backgroundColor = "#ffe3e3";
+      answer.style.color = "inherit";
+      answer.style.textAlign = "center";
+      this.value = "";
+      pic.querySelector("span").textContent = " ❌ Try Again !!";
     }
   }
 });
+
+const initialiseQuiz = function () {
+  console.log(answeredQues);
+  currFilter.src = "opening.jpg";
+  currFilter.style.setProperty("--blurValue", `${0}px`);
+  answer.value = "";
+  answer.style.backgroundColor = "inherit";
+  answer.style.color = "inherit";
+  timer.style.backgroundColor = "#12b886";
+  scoreTitle.textContent = "SCORE";
+  score.textContent = newScore;
+  pic.querySelector("span").textContent = "";
+};
+
+const initquizVariables = function () {
+  startTime = 0;
+  //answeredQues = [0];
+  randomNum = 0;
+  newScore = 0;
+};
